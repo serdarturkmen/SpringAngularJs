@@ -1,0 +1,1 @@
+var app = angular.module('app', ['ngRoute', 'ngResource', 'auditor.i18n', 'ngCookies']);

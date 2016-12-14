@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: techservice
+  profiles:
+      active: dev
+  datasource:
+        url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: techservice
+        password: techservice
+  jpa:
+      show-sql: true
+  hibernate:
+      ddl-auto: create
+      naming:
+        strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+  data:
+    mongodb:
+      port: 27017
+      database: serdar
+server:
+    port: 8080
