@@ -13,7 +13,7 @@ import java.util.UUID;
  */
 
 @MappedSuperclass
-public class BaseMonModel {
+public abstract class BaseMonModel {
 
 
 	public BaseMonModel() {

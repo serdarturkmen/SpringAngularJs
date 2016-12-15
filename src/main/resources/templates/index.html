@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="/css/app.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
 </head>
 <body>
 <!-- Stack the columns on mobile by making one full-width and the other half-width -->
@@ -18,14 +19,6 @@
     <h2>Administrator Panel</h2>
     {{'COMMON.ADMIN' |
     translate}}
-    <div class="home-section">
-        <ul class="menu-list">
-            <li><a href="#/users">Users</a></li>
-            <li><a href="#/roles">Roles</a></li>
-        </ul>
-    </div>
-
-
 </div>
 <div ng-view=""></div>
 <div th:include="footer :: foot"></div>
@@ -39,13 +32,18 @@
 <script src="bower_components/angular-translate/angular-translate.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/moment/moment.js"></script>
 <script src="app/app.module.js"></script>
 <script src="app/app.config.js"></script>
 <script src="app/app.controller.js"></script>
 <script src="app/roles.controller.js"></script>
-<script src="app/user/user.controller.js"></script>
+<script src="app/student/student.controller.js"></script>
+<script src="app/student/studentDetail.controller.js"></script>
 <script src="app/navbar/navbar.controller.js"></script>
 <script src="app/common/i18n.js"></script>
+
+<script src="app/services/student.service.js"></script>
+
 
 </body>
 </html>

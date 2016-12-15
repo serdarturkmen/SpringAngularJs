@@ -1,6 +1,7 @@
 package com.example.thymeleaf.web.rest;
 
 import com.example.thymeleaf.bs.BaseMongoBS;
+import com.example.thymeleaf.bs.IBaseMongoBS;
 import com.example.thymeleaf.model.BaseMonModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +17,7 @@ public abstract class BaseResource<T extends BaseMonModel> {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    public abstract BaseMongoBS<T> getBaseMongoBS();
+    public abstract IBaseMongoBS<T> getBaseMongoBS();
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody

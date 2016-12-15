@@ -1,7 +1,7 @@
 package com.example.thymeleaf.web.rest;
 
-import com.example.thymeleaf.bs.BaseMongoBS;
-import com.example.thymeleaf.bs.FacultyBS;
+import com.example.thymeleaf.bs.IBaseMongoBS;
+import com.example.thymeleaf.bs.IFacultyBS;
 import com.example.thymeleaf.model.Faculty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("faculty")
 public class FacultyResource extends BaseResource<Faculty>{
 
-    private FacultyBS facultyBS;
+    private IFacultyBS facultyBS;
 
     @Autowired
-    public FacultyResource(FacultyBS facultyBS) {
+    public FacultyResource(IFacultyBS facultyBS) {
         this.facultyBS = facultyBS;
     }
 
+
     @Override
-    public BaseMongoBS<Faculty> getBaseMongoBS() {
+    public IBaseMongoBS<Faculty> getBaseMongoBS() {
         return facultyBS;
     }
 }

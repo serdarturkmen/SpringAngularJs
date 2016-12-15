@@ -1,7 +1,12 @@
-app.controller('navbarController', function($scope, $translate) {
-    $scope.hello = "hello navbar";
-    $scope.setLang = function(lang) {
+app.controller('NavbarController', NavbarController);
+
+NavbarController.$inject = ['$translate', 'Student'];
+
+function NavbarController ($translate, Student) {
+    var vm = this;
+    vm.hello = "hello navbar";
+    vm.setLang = function(lang) {
         $translate.use(lang);
     };
-
-});
+    vm.students = Student.query();
+}

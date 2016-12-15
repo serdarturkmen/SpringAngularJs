@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by bawer on 14.12.2016.
  */
-public interface IFacultyBS {
+public interface IFacultyBS extends IBaseMongoBS<Faculty> {
 
     Faculty read(String id);
 

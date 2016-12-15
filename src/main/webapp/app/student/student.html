@@ -1,0 +1,30 @@
+<div class="section">
+    <h3>{{vm.headingTitle}}</h3>
+    <div>dsadsd
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="student in vm.students">
+                <th scope="row">{{$index + 1}}</th>
+                <td>{{student.firstName}}</td>
+                <td>{{student.lastName}}</td>
+                <td>
+                    <a href="#/students/{{student.id}}" ><i class="fa fa-edit fa-lg m-t-2"></i></a>
+                </td>
+                <td>
+                    <a href="" ng-click="vm.deleteStudent(student)"><i style="color:red" class="fa fa-trash fa-lg m-t-2" ></i></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

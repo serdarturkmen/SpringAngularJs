@@ -4,9 +4,15 @@ app.config(function ($routeProvider) {
             templateUrl: '/dashboard.html',
             controller: 'dashboardController'
         })
-        .when('/users', {
-            templateUrl: '/app/user/users.html',
-            controller: 'usersController'
+        .when('/students', {
+            templateUrl: '/app/student/student.html',
+            controller: 'StudentController',
+            controllerAs: 'vm'
+        })
+        .when('/students/:id', {
+            templateUrl: '/app/student/studentDetail.html',
+            controller: 'StudentDetailController',
+            controllerAs: 'vm'
         })
         .when('/roles', {
             templateUrl: '/views/roles.template',
