@@ -1,2 +1,2 @@
-require('./angular-resource');
+require('./angular-rest');
 module.exports = 'ngResource';

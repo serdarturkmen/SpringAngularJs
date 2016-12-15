@@ -91,7 +91,7 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
 
     this.model.securityDefinitions = this.model.securityDefinitions || {};
 
-    // Render each resource
+    // Render each rest
 
     var resources = {};
     var counter = 0;
@@ -116,10 +116,10 @@ SwaggerUi.Views.MainView = Backbone.View.extend({
   },
 
   addResource: function(resource, auths){
-    // Render a resource and add it to resources li
+    // Render a rest and add it to resources li
     resource.id = resource.id.replace(/\s/g, '_');
 
-    // Make all definitions available at the root of the resource so that they can
+    // Make all definitions available at the root of the rest so that they can
     // be loaded by the JSonEditor
     resource.definitions = this.model.definitions;
 

@@ -18,6 +18,7 @@ public class BaseMonModel {
 
 	public BaseMonModel() {
 		setId(UUID.randomUUID().toString());
+		setCreatedDate(new Date());
 	}
 
 	public BaseMonModel(String id) {

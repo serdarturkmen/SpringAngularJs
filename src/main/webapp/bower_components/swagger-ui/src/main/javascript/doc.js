@@ -94,7 +94,7 @@ window.Docs = {
 		switch (fragments.length) {
 			case 1:
         if (fragments[0].length > 0) { // prevent matching "#/"
-          // Expand all operations for the resource and scroll to it
+          // Expand all operations for the rest and scroll to it
           var dom_id = 'resource_' + fragments[0];
 
           Docs.expandEndpointListForResource(fragments[0]);
@@ -130,11 +130,11 @@ window.Docs = {
 		}
 	},
 
-	// Expand resource
+	// Expand rest
 	expandEndpointListForResource: function(resource) {
 		var resource = Docs.escapeResourceName(resource);
 		if (resource == '') {
-			$('.resource ul.endpoints').slideDown();
+			$('.rest ul.endpoints').slideDown();
 			return;
 		}
 
@@ -144,11 +144,11 @@ window.Docs = {
 		elem.slideDown();
 	},
 
-	// Collapse resource and mark as explicitly closed
+	// Collapse rest and mark as explicitly closed
 	collapseEndpointListForResource: function(resource) {
 		var resource = Docs.escapeResourceName(resource);
 		if (resource == '') {
-			$('.resource ul.endpoints').slideUp();
+			$('.rest ul.endpoints').slideUp();
 			return;
 		}
 
@@ -159,11 +159,11 @@ window.Docs = {
 	},
 
 	expandOperationsForResource: function(resource) {
-		// Make sure the resource container is open..
+		// Make sure the rest container is open..
 		Docs.expandEndpointListForResource(resource);
 
 		if (resource == '') {
-			$('.resource ul.endpoints li.operation div.content').slideDown();
+			$('.rest ul.endpoints li.operation div.content').slideDown();
 			return;
 		}
 
@@ -173,11 +173,11 @@ window.Docs = {
 	},
 
 	collapseOperationsForResource: function(resource) {
-		// Make sure the resource container is open..
+		// Make sure the rest container is open..
 		Docs.expandEndpointListForResource(resource);
 
 		if (resource == '') {
-			$('.resource ul.endpoints li.operation div.content').slideUp();
+			$('.rest ul.endpoints li.operation div.content').slideUp();
 			return;
 		}
 

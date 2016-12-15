@@ -10,7 +10,7 @@
 }
 !*/
 /* DOC
-When used on an `<input>`, this attribute signifies that the resource it takes should be generated via device's camera, camcorder, sound recorder.
+When used on an `<input>`, this attribute signifies that the rest it takes should be generated via device's camera, camcorder, sound recorder.
 */
 define(['Modernizr', 'createElement'], function(Modernizr, createElement) {
   // testing for capture attribute in inputs

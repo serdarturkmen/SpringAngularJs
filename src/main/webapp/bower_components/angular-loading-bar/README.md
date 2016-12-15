@@ -118,7 +118,7 @@ $http.post('/save', data, {
 
 
 ```js
-// ignore particular $resource requests:
+rest
 .factory('Restaurant', function($resource) {
   return $resource('/api/restaurant/:id', {id: '@id'}, {
     query: {

@@ -56,12 +56,12 @@ function shallowClearAndCopy(src, dst) {
  * # ngResource
  *
  * The `ngResource` module provides interaction support with RESTful services
- * via the $resource service.
+ * via the $rest service.
  *
  *
  * <div doc-module-components="ngResource"></div>
  *
- * See {@link ngResource.$resourceProvider} and {@link ngResource.$resource} for usage.
+ * See {@link ngResource.$resourceProvider} and {@link ngResource.$rest} for usage.
  */
 
 /**
@@ -87,10 +87,10 @@ function shallowClearAndCopy(src, dst) {
  * @requires ng.$timeout
  *
  * @description
- * A factory which creates a resource object that lets you interact with
+ * A factory which creates a rest object that lets you interact with
  * [RESTful](http://en.wikipedia.org/wiki/Representational_State_Transfer) server-side data sources.
  *
- * The returned resource object has action methods which provide high-level behaviors without
+ * The returned rest object has action methods which provide high-level behaviors without
  * the need to interact with the low level {@link ng.$http $http} service.
  *
  * Requires the {@link ngResource `ngResource`} module to be installed.
@@ -112,8 +112,8 @@ function shallowClearAndCopy(src, dst) {
  *   `http://example.com:8080/api`), it will be respected.
  *
  *   If you are using a url with a suffix, just add the suffix, like this:
- *   `$resource('http://example.com/resource.json')` or `$resource('http://example.com/:id.json')`
- *   or even `$resource('http://example.com/resource/:resource_id.:format')`
+ *   `$rest('http://example.com/resource.json')` or `$rest('http://example.com/:id.json')`
+ *   or even `$rest('http://example.com/resource/:resource_id.:format')`
  *   If the parameter before the suffix is empty, :resource_id in this case, then the `/.` will be
  *   collapsed down to a single `.`.  If you need this sequence to appear and not collapse then you
  *   can escape it with `/\.`.
@@ -138,7 +138,7 @@ function shallowClearAndCopy(src, dst) {
  *   method that does not accept a request body)
  *
  * @param {Object.<Object>=} actions Hash with declaration of custom actions that should extend
- *   the default set of resource actions. The declaration should be created in the format of {@link
+ *   the default set of rest actions. The declaration should be created in the format of {@link
  *   ng.$http#usage $http.config}:
  *
  *       {action1: {method:?, params:?, isArray:?, headers:?, ...},
@@ -148,7 +148,7 @@ function shallowClearAndCopy(src, dst) {
  *   Where:
  *
  *   - **`action`** – {string} – The name of action. This name becomes the name of the method on
- *     your resource object.
+ *     your rest object.
  *   - **`method`** – {string} – Case insensitive HTTP method (e.g. `GET`, `POST`, `PUT`,
  *     `DELETE`, `JSONP`, etc).
  *   - **`params`** – {Object=} – Optional set of pre-bound parameters for this action. If any of
@@ -156,7 +156,7 @@ function shallowClearAndCopy(src, dst) {
  *     be obtained for a request (unless the param was overridden). The function will be passed the
  *     current data value as an argument.
  *   - **`url`** – {string} – action specific `url` override. The url templating is supported just
- *     like for the resource-level urls.
+ *     like for the rest-level urls.
  *   - **`isArray`** – {boolean=} – If true then the returned object for this action is an array,
  *     see `returns` section.
  *   - **`transformRequest`** –
@@ -179,7 +179,7 @@ function shallowClearAndCopy(src, dst) {
  *     caching.
  *   - **`timeout`** – `{number}` – timeout in milliseconds.<br />
  *     **Note:** In contrast to {@link ng.$http#usage $http.config}, {@link ng.$q promises} are
- *     **not** supported in $resource, because the same value would be used for multiple requests.
+ *     **not** supported in $rest, because the same value would be used for multiple requests.
  *     If you are looking for a way to cancel requests, you should use the `cancellable` option.
  *   - **`cancellable`** – `{boolean}` – if set to true, the request made by a "non-instance" call
  *     will be cancelled (if not already completed) by calling `$cancelRequest()` on the call's
@@ -204,7 +204,7 @@ function shallowClearAndCopy(src, dst) {
  *   cancelled (if not already completed) by calling `$cancelRequest()` on the call's return value.
  *   This can be overwritten per action. (Defaults to false.)
  *
- * @returns {Object} A resource "class" object with methods for the default set of resource actions
+ * @returns {Object} A rest "class" object with methods for the default set of rest actions
  *   optionally extended with custom `actions`. The default set contains these actions:
  *   ```js
  *   { 'get':    {method:'GET'},
@@ -216,21 +216,21 @@ function shallowClearAndCopy(src, dst) {
  *
  *   Calling these methods invoke an {@link ng.$http} with the specified http method,
  *   destination and parameters. When the data is returned from the server then the object is an
- *   instance of the resource class. The actions `save`, `remove` and `delete` are available on it
+ *   instance of the rest class. The actions `save`, `remove` and `delete` are available on it
  *   as  methods with the `$` prefix. This allows you to easily perform CRUD operations (create,
  *   read, update, delete) on server-side data like this:
  *   ```js
- *   var User = $resource('/user/:userId', {userId:'@id'});
+ *   var User = $rest('/user/:userId', {userId:'@id'});
  *   var user = User.get({userId:123}, function() {
  *     user.abc = true;
  *     user.$save();
  *   });
  *   ```
  *
- *   It is important to realize that invoking a $resource object method immediately returns an
+ *   It is important to realize that invoking a $rest object method immediately returns an
  *   empty reference (object or array depending on `isArray`). Once the data is returned from the
  *   server the existing reference is populated with the actual data. This is a useful trick since
- *   usually the resource is assigned to a model which is then rendered by the view. Having an empty
+ *   usually the rest is assigned to a model which is then rendered by the view. Having an empty
  *   object results in no rendering, once the data arrives from the server then the object is
  *   populated with the data and the view automatically re-renders itself showing the new data. This
  *   means that in most cases one never has to write a callback function for the action methods.
@@ -244,7 +244,7 @@ function shallowClearAndCopy(src, dst) {
  *
  *
  *   Success callback is called with (value, responseHeaders) arguments, where the value is
- *   the populated resource instance or collection object. The error callback is called
+ *   the populated rest instance or collection object. The error callback is called
  *   with (httpResponse) argument.
  *
  *   Class actions return empty instance (with additional properties below).
@@ -255,13 +255,13 @@ function shallowClearAndCopy(src, dst) {
  *   - `$promise`: the {@link ng.$q promise} of the original server interaction that created this
  *     instance or collection.
  *
- *     On success, the promise is resolved with the same resource instance or collection object,
+ *     On success, the promise is resolved with the same rest instance or collection object,
  *     updated with data from server. This makes it easy to use in
  *     {@link ngRoute.$routeProvider resolve section of $routeProvider.when()} to defer view
- *     rendering until the resource(s) are loaded.
+ *     rendering until the rest(s) are loaded.
  *
  *     On failure, the promise is rejected with the {@link ng.$http http response} object, without
- *     the `resource` property.
+ *     the `rest` property.
  *
  *     If an interceptor object was provided, the promise will instead be resolved with the value
  *     returned by the interceptor.
@@ -285,11 +285,11 @@ function shallowClearAndCopy(src, dst) {
  *
  * @example
  *
- * # Credit card resource
+ * # Credit card rest
  *
  * ```js
      // Define CreditCard class
-     var CreditCard = $resource('/user/:userId/card/:cardId',
+     var CreditCard = $rest('/user/:userId/card/:cardId',
       {userId:123, cardId:'@id'}, {
        charge: {method:'POST', params:{charge:true}}
       });
@@ -322,7 +322,7 @@ function shallowClearAndCopy(src, dst) {
      expect(newCard.id).toEqual(789);
  * ```
  *
- * The object returned from this function execution is a resource "class" which has "static" method
+ * The object returned from this function execution is a rest "class" which has "static" method
  * for each action in the definition.
  *
  * Calling these methods invoke `$http` on the `url` template with the given `method`, `params` and
@@ -330,14 +330,14 @@ function shallowClearAndCopy(src, dst) {
  *
  * @example
  *
- * # User resource
+ * # User rest
  *
- * When the data is returned from the server then the object is an instance of the resource type and
+ * When the data is returned from the server then the object is an instance of the rest type and
  * all of the non-GET methods are available with `$` prefix. This allows you to easily support CRUD
  * operations (create, read, update, delete) on server-side data.
 
    ```js
-     var User = $resource('/user/:userId', {userId:'@id'});
+     var User = $rest('/user/:userId', {userId:'@id'});
      User.get({userId:123}, function(user) {
        user.abc = true;
        user.$save();
@@ -349,7 +349,7 @@ function shallowClearAndCopy(src, dst) {
  * could rewrite the above example and get access to http headers as:
  *
    ```js
-     var User = $resource('/user/:userId', {userId:'@id'});
+     var User = $rest('/user/:userId', {userId:'@id'});
      User.get({userId:123}, function(user, getResponseHeaders){
        user.abc = true;
        user.$save(function(user, putResponseHeaders) {
@@ -362,7 +362,7 @@ function shallowClearAndCopy(src, dst) {
  * You can also access the raw `$http` promise via the `$promise` property on the object returned
  *
    ```
-     var User = $resource('/user/:userId', {userId:'@id'});
+     var User = $rest('/user/:userId', {userId:'@id'});
      User.get({userId:123})
          .$promise.then(function(user) {
            $scope.user = user;
@@ -373,14 +373,14 @@ function shallowClearAndCopy(src, dst) {
  *
  * # Creating a custom 'PUT' request
  *
- * In this example we create a custom method on our resource to make a PUT request
+ * In this example we create a custom method on our rest to make a PUT request
  * ```js
  *    var app = angular.module('app', ['ngResource', 'ngRoute']);
  *
  *    // Some APIs expect a PUT request in the format URL/object/ID
  *    // Here we are creating an 'update' method
- *    app.factory('Notes', ['$resource', function($resource) {
- *    return $resource('/notes/:id', null,
+ *    app.factory('Notes', ['$rest', function($rest) {
+ *    return $rest('/notes/:id', null,
  *        {
  *            'update': { method:'PUT' }
  *        });
@@ -409,8 +409,8 @@ function shallowClearAndCopy(src, dst) {
  * to an instance or collection (as long as it is a result of a "non-instance" call):
  *
    ```js
-     // ...defining the `Hotel` resource...
-     var Hotel = $resource('/api/hotel/:id', {id: '@id'}, {
+     // ...defining the `Hotel` rest...
+     var Hotel = $rest('/api/hotel/:id', {id: '@id'}, {
        // Let's make the `query()` method cancellable
        query: {method: 'get', isArray: true, cancellable: true}
      });
@@ -438,7 +438,7 @@ angular.module('ngResource', ['ng']).
      * @ngdoc property
      * @name $resourceProvider#defaults
      * @description
-     * Object containing default options used when creating `$resource` instances.
+     * Object containing default options used when creating `$rest` instances.
      *
      * The default values satisfy a wide range of usecases, but you may choose to overwrite any of
      * them to further customize your instances. The available properties are:
@@ -448,14 +448,14 @@ angular.module('ngResource', ['ng']).
      *   (Defaults to true.)
      * - **cancellable** – `{boolean}` – If true, the request made by a "non-instance" call will be
      *   cancelled (if not already completed) by calling `$cancelRequest()` on the call's return
-     *   value. For more details, see {@link ngResource.$resource}. This can be overwritten per
-     *   resource class or action.<br />
+     *   value. For more details, see {@link ngResource.$rest}. This can be overwritten per
+     *   rest class or action.<br />
      *   (Defaults to false.)
      * - **actions** - `{Object.<Object>}` - A hash with default actions declarations. Actions are
      *   high-level methods corresponding to RESTful actions/methods on resources. An action may
      *   specify what HTTP method to use, what URL to hit, if the return value will be a single
      *   object or a collection (array) of objects etc. For more details, see
-     *   {@link ngResource.$resource}. The actions can also be enhanced or overwritten per resource
+     *   {@link ngResource.$rest}. The actions can also be enhanced or overwritten per rest
      *   class.<br />
      *   The default actions are:
      *   ```js
@@ -683,7 +683,7 @@ angular.module('ngResource', ['ng']).
           if (numericTimeout && !angular.isNumber(numericTimeout)) {
             $log.debug('ngResource:\n' +
                        '  Only numeric values are allowed as `timeout`.\n' +
-                       '  Promises are not supported in $resource, because the same value would ' +
+                       '  Promises are not supported in $rest, because the same value would ' +
                        'be used for multiple requests. If you are looking for a way to cancel ' +
                        'requests, you should use the `cancellable` option.');
             delete action.timeout;
@@ -775,7 +775,7 @@ angular.module('ngResource', ['ng']).
                 // jshint -W018
                 if (angular.isArray(data) !== (!!action.isArray)) {
                   throw $resourceMinErr('badcfg',
-                      'Error in resource configuration for action `{0}`. Expected response to ' +
+                      'Error in rest configuration for action `{0}`. Expected response to ' +
                       'contain an {1} but got an {2} (Request: {3} {4})', name, action.isArray ? 'array' : 'object',
                     angular.isArray(data) ? 'array' : 'object', httpConfig.method, httpConfig.url);
                 }

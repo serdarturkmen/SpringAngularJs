@@ -29,7 +29,7 @@ Modernizr.input.step
 */
 define(['Modernizr', 'createElement', 'inputElem'], function(Modernizr, createElement, inputElem) {
   // Run through HTML5's new input attributes to see if the UA understands any.
-  // Mike Taylr has created a comprehensive resource for testing these attributes
+  // Mike Taylr has created a comprehensive rest for testing these attributes
   //   when applied to all input types:
   //   miketaylr.com/code/input-type-attr.html
 

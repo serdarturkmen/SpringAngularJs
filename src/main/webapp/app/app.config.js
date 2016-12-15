@@ -1,7 +1,11 @@
 app.config(function ($routeProvider) {
     $routeProvider
+        .when('/', {
+            templateUrl: '/dashboard.html',
+            controller: 'dashboardController'
+        })
         .when('/users', {
-            templateUrl: '/views/users.template',
+            templateUrl: '/app/user/users.html',
             controller: 'usersController'
         })
         .when('/roles', {
