@@ -17,5 +17,17 @@ spring:
     mongodb:
       port: 27017
       database: serdar
+  mail:
+    host: smtp.gmail.com
+    port: 25
+    username: denememailsrd@gmail.com
+    password: hasiktir
 server:
     port: 8080
+exampleApp:
+  async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000
+  mail:
+    from: denememailsrd@gmail.com

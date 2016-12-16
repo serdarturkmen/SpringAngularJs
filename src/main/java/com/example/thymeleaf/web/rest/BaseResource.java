@@ -1,6 +1,5 @@
 package com.example.thymeleaf.web.rest;
 
-import com.example.thymeleaf.bs.BaseMongoBS;
 import com.example.thymeleaf.bs.IBaseMongoBS;
 import com.example.thymeleaf.model.BaseMonModel;
 import org.slf4j.Logger;
