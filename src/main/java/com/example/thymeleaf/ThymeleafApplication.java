@@ -2,6 +2,7 @@ package com.example.thymeleaf;
 
 import javax.annotation.PostConstruct;
 
+import com.example.thymeleaf.config.ApplicationProperties;
 import com.example.thymeleaf.model.*;
 import com.example.thymeleaf.repository.mongo.FacultyMRepository;
 import com.example.thymeleaf.repository.mongo.StudentMRepository;
@@ -9,12 +10,15 @@ import org.hibernate.usertype.CompositeUserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Scanner;
 
 @SpringBootApplication
+@EnableConfigurationProperties({ ApplicationProperties.class})
 public class ThymeleafApplication {
 
     @Autowired
@@ -30,6 +34,7 @@ public class ThymeleafApplication {
     @PostConstruct
     public void dene() {
         initMongo();
+        optionalExamples();
         int a = 5 % 3;
         int b = 4 % 2;
         //StairCase(6);
@@ -38,6 +43,8 @@ public class ThymeleafApplication {
     }
 
     private void initMongo() {
+        studentMRepository.deleteAll();
+        facultyMRepository.deleteAll();
         Faculty fac = new Faculty("Engineering");
         Department depCs = new Department("CS");
         Department depEl = new Department("ELECTRONICS");
@@ -71,8 +78,22 @@ public class ThymeleafApplication {
         facultyMRepository.save(fac);
         studentMRepository.save(students);
         List<Faculty> facs =  facultyMRepository.findAll();
-        Student std = studentMRepository.findByFirstName("serdar");
+//        Student std = studentMRepository.findByFirstName("serdar");
         System.out.print(facs);
+    }
+
+    private void optionalExamples() {
+        System.out.println();
+        Integer numara = 3;
+        Optional<Integer> opt = Optional.ofNullable(numara);
+        opt
+                .map(num->Math.pow(num,2))
+                .ifPresent(System.out::println);
+        String message = "deneme";
+        Optional<String> opt2 = Optional.ofNullable(message);
+        opt2
+                .filter(m -> m.length() > 5)
+                .ifPresent(System.out::println);
     }
 
     private int coprimeSum() {

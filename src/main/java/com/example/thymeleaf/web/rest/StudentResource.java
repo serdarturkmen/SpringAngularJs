@@ -32,12 +32,9 @@ public class StudentResource extends BaseResource<Student>{
         return studentBS;
     }
 
-    @RequestMapping(value = "dene", method = RequestMethod.GET)
+    @RequestMapping(value = "mail", method = RequestMethod.GET)
     public String dene() throws Exception {
-        if(1>0){
-            mailService.sendEmail("baver_t@hotmail.com","subject", "dsadsas",false,true);
-            throw new Exception();
-        }
+        mailService.sendEmail("baver_t@hotmail.com","subject", "dsadsas",false,true);
         return "ok";
     }
 

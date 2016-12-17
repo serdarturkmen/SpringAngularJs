@@ -19,9 +19,15 @@ spring:
       database: serdar
   mail:
     host: smtp.gmail.com
-    port: 25
+    port: 587
     username: denememailsrd@gmail.com
     password: hasiktir
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
 server:
     port: 8080
 exampleApp:

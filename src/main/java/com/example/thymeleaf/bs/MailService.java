@@ -1,5 +1,6 @@
 package com.example.thymeleaf.bs;
 
+import com.example.thymeleaf.config.ApplicationProperties;
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.spring4.SpringTemplateEngine;
 import javax.mail.internet.MimeMessage;
 
 /**
@@ -27,9 +27,9 @@ public class MailService {
     private static final String USER = "user";
     private static final String BASE_URL = "baseUrl";
 
+    @Autowired
+    private ApplicationProperties applicationProperties;
 
-    @Value("${exampleApp.mail.from}")
-    private String mailFrom;
 
     @Autowired
     private JavaMailSenderImpl javaMailSender;
@@ -50,7 +50,7 @@ public class MailService {
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, CharEncoding.UTF_8);
             message.setTo(to);
-            message.setFrom(mailFrom);
+            message.setFrom(applicationProperties.getMail().getFrom());
             message.setSubject(subject);
             message.setText(content, isHtml);
             javaMailSender.send(mimeMessage);
