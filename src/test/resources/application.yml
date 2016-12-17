@@ -33,7 +33,7 @@ spring:
         host: smtp.gmail.com
         port: 25
         username: denememailsrd@gmail.com
-        password: hasiktir
+        password: denememail
     server:
         port: 8080
     exampleApp:
