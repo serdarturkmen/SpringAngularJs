@@ -1,5 +1,8 @@
 **Frameworks that are Used**
 
 Spring boot
-mongodb
-angularjs
+Angularjs
+Mongodb
+Spring Security
+Spring Mail
+Juinit + Spring test
