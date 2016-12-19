@@ -67,7 +67,8 @@ public class FacultyResourceTest {
         facultyMRepository.deleteAll();
         facultyMRepository.save(faculty);
         facultyMRepository.save(anotherFaculty);
-        restCategoryMockMvc.perform(get("/faculty")).andExpect(status().isOk())
+        restCategoryMockMvc.perform(get("/faculty"))
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$").value(hasSize(2)));
     }

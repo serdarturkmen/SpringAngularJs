@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 
 @Configuration
-public class SpringMongoConfig1 {
+public class SpringMongoConfig {
 
 	public @Bean
 	MongoDbFactory mongoDbFactory() throws Exception {

@@ -19,9 +19,12 @@
     <h2>Administrator Panel</h2>
     {{'COMMON.ADMIN' |
     translate}}
+    <div class="well">
+        <div ng-view=""></div>
+        <!-- Angular views -->
+    </div>
 </div>
-<div ng-view=""></div>
-<div th:include="footer :: foot"></div>
+<div class="footer" ng-cloak="" th:include="footer :: foot"></div>
 
 <script src="bower_components/jquery/dist/jquery.js"/>
 <script src="bower_components/tether/dist/js/tether.js"/>
