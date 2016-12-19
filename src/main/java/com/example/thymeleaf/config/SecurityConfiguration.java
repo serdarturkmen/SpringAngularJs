@@ -33,13 +33,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private ApplicationProperties applicationProperties;
 
     @Autowired
-    private AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
+    private SerdarAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler;
 
     @Autowired
-    private AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
+    private SerdarAuthenticationFailureHandler ajaxAuthenticationFailureHandler;
 
     @Autowired
-    private AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler;
+    private SerdarLogoutSuccessHandler ajaxLogoutSuccessHandler;
 
     @Autowired
     private Http401UnauthorizedEntryPoint authenticationEntryPoint;
@@ -94,7 +94,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")
-//                .successHandler(ajaxAuthenticationSuccessHandler)
+                .successHandler(ajaxAuthenticationSuccessHandler)
                 .failureHandler(ajaxAuthenticationFailureHandler)
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
@@ -102,8 +102,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .invalidateHttpSession(true)
-                .logoutSuccessUrl("/")
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessHandler(ajaxLogoutSuccessHandler)
                 .and()
                 .headers()
                 .frameOptions()
