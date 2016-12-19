@@ -2,6 +2,8 @@ package com.example.thymeleaf.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by bawer on 17.12.2016.
  * Fetch exampleApp properties from application.yml
@@ -13,12 +15,18 @@ public class ApplicationProperties {
 
     private final Mail mail = new Mail();
 
+    private final Security security = new Security();
+
     public Async getAsync() {
         return async;
     }
 
     public Mail getMail() {
         return mail;
+    }
+
+    public Security getSecurity() {
+        return security;
     }
 
     public static class Async {
@@ -64,6 +72,29 @@ public class ApplicationProperties {
 
         public void setFrom(String from) {
             this.from = from;
+        }
+    }
+
+    public static class Security {
+
+        private final RememberMe rememberMe = new RememberMe();
+
+        public RememberMe getRememberMe() {
+            return rememberMe;
+        }
+
+        public static class RememberMe {
+
+            @NotNull
+            private String key;
+
+            public String getKey() {
+                return key;
+            }
+
+            public void setKey(String key) {
+                this.key = key;
+            }
         }
     }
 

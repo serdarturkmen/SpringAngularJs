@@ -31,6 +31,9 @@ spring:
 server:
     port: 8080
 exampleApp:
+  security:
+    rememberMe:
+      key: f1901d7e1c3e8c75bea8d43c601b71c17589b486
   async:
     corePoolSize: 2
     maxPoolSize: 50

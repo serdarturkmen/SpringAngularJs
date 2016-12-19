@@ -36,10 +36,13 @@ spring:
         password: denememail
     server:
         port: 8080
-    exampleApp:
-      async:
-        corePoolSize: 2
-        maxPoolSize: 50
-        queueCapacity: 10000
-      mail:
-        from: denememailsrd@gmail.com
+exampleApp:
+  security:
+    rememberMe:
+      key: f1901d7e1c3e8c75bea8d43c601b71c17589b486
+  async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000
+  mail:
+    from: denememailsrd@gmail.com

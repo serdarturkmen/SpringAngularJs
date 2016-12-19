@@ -5,7 +5,9 @@ import javax.annotation.PostConstruct;
 import com.example.thymeleaf.config.ApplicationProperties;
 import com.example.thymeleaf.model.*;
 import com.example.thymeleaf.repository.mongo.FacultyMRepository;
+import com.example.thymeleaf.repository.mongo.RoleMRepository;
 import com.example.thymeleaf.repository.mongo.StudentMRepository;
+import com.example.thymeleaf.repository.mongo.UserMRepository;
 import org.hibernate.usertype.CompositeUserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -27,6 +29,12 @@ public class ThymeleafApplication {
     @Autowired
     private StudentMRepository studentMRepository;
 
+    @Autowired
+    private UserMRepository userMRepository;
+
+    @Autowired
+    private RoleMRepository roleMRepository;
+
     public static void main(String[] args) {
         SpringApplication.run(ThymeleafApplication.class, args);
     }
@@ -45,6 +53,8 @@ public class ThymeleafApplication {
     private void initMongo() {
         studentMRepository.deleteAll();
         facultyMRepository.deleteAll();
+        userMRepository.deleteAll();
+
         Faculty fac = new Faculty("Engineering");
         Department depCs = new Department("CS");
         Department depEl = new Department("ELECTRONICS");
@@ -68,12 +78,37 @@ public class ThymeleafApplication {
         depCs.addCourse(courseTwo);
         depEl.addStudent(studentTwo);
 
-
         courseOne.addStudent(student);
         courseTwo.addStudent(student);
         List<Student> students = new ArrayList<>();
         students.add(student);
         students.add(studentTwo);
+
+        Role roleUser = new Role();
+        roleUser.setName("ROLE_USER");
+        Role roleAdmin = new Role();
+        roleAdmin.setName("ROLE_ADMIN");
+        roleMRepository.save(roleUser);
+        roleMRepository.save(roleAdmin);
+        User user = new User();
+        user.setEmail("user");
+        user.setFirstName("serdar");
+        user.setLastName("turkmen");
+        user.setSalt("1234");
+        user.setPassword("243b2e76fd07d358524dc6f7a3bb83c7315c0d07");
+        user.setEnabled(true);
+
+        User userAdmin = new User();
+        userAdmin.setEmail("admin");
+        userAdmin.setFirstName("Ali");
+        userAdmin.setLastName("Can");
+        userAdmin.setSalt("1234");
+        userAdmin.setPassword("e53343d3490f48bb362002cb11d591972d831b3d");
+        userAdmin.setEnabled(true);
+
+        userMRepository.save(user);
+        userMRepository.save(userAdmin);
+        List<User> users = userMRepository.findAll();
 
         facultyMRepository.save(fac);
         studentMRepository.save(students);
