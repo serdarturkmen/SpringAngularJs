@@ -11,6 +11,9 @@ import java.util.List;
 @Data
 public class Student extends BaseMonModel {
 
+    public Student() {
+    }
+
     public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

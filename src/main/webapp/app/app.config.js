@@ -5,12 +5,17 @@ app.config(function ($routeProvider) {
             controller: 'dashboardController'
         })
         .when('/students', {
-            templateUrl: '/app/student/student.html',
+            templateUrl: '/app/student/student.template',
             controller: 'StudentController',
             controllerAs: 'vm'
         })
         .when('/students/:id', {
-            templateUrl: '/app/student/studentDetail.html',
+            templateUrl: '/app/student/studentDetail.template',
+            controller: 'StudentDetailController',
+            controllerAs: 'vm'
+        })
+        .when('/students/new', {
+            templateUrl: '/app/student/studentDetail.template',
             controller: 'StudentDetailController',
             controllerAs: 'vm'
         })

@@ -3,8 +3,10 @@ var translationsTR = {
         'ADMIN' : 'YÖNETİCİ',
         'ARCHIVE_SELECTED' : 'Seçilenleri Arşivle',
         'UNARCHIVE_SELECTED' : 'Seçilenleri Arşivden Kaldır',
-        'AUDITOR' : 'DENETÇİ',
-        'FIRSTNAME' : 'Ad'
+        'FIRSTNAME' : 'Ad',
+        'LASTNAME' : 'Soyad',
+        'EMAIL' : 'E-posta',
+        'SAVE' : 'Kaydet',
     },
     'ERROR' : {
         'INTEGRITY' : 'Bağlı kayıt bulunduğundan silinemedi'
@@ -16,8 +18,10 @@ var translationsEN = {
         'ADMIN' : 'ADMIN',
         'ARCHIVE_SELECTED' : 'Archive Selected',
         'UNARCHIVE_SELECTED' : 'Unarchive Selected',
-        'AUDITOR' : 'AUDITOR',
-        'FIRSTNAME' : 'First Name'
+        'FIRSTNAME' : 'First Name',
+        'LASTNAME' : 'Last Name',
+        'EMAIL' : 'E-mail',
+        'SAVE' : 'Save',
     },
     'ERROR' : {
         'INTEGRITY' : 'Cannot perform delete because of related resources'
@@ -74,7 +78,7 @@ var TRANSLATE = new function() {
 
 };
 
-var i18n = angular.module('auditor.i18n', [ 'pascalprecht.translate' ]);
+var i18n = angular.module('serdar.i18n', [ 'pascalprecht.translate' ]);
 
 i18n.config([ '$translateProvider', function($translateProvider) {
 

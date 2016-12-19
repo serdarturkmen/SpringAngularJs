@@ -1,1 +1,1 @@
-var app = angular.module('app', ['ngRoute', 'ngResource', 'auditor.i18n', 'ngCookies']);
+var app = angular.module('app', ['ngRoute', 'ngResource', 'serdar.i18n', 'ngCookies']);

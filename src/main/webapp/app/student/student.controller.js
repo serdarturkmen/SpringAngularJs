@@ -1,9 +1,9 @@
 angular.module('app')
     .controller('StudentController', StudentController);
 
-StudentController.$inject = ['Student'];
+StudentController.$inject = ['Student', '$location'];
 
-function StudentController (Student) {
+function StudentController (Student, $location) {
     var vm = this;
     vm.headingTitle = "User List";
      Student.query(function (response) {
@@ -19,5 +19,9 @@ function StudentController (Student) {
             vm.students.splice(index, 1);
             console.log("deleted")
         })
+    }
+
+    vm.addNew = function(){
+        $location.path("students/new");
     }
 }
