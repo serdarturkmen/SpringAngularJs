@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 import org.springframework.security.web.authentication.RememberMeServices;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -48,9 +49,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private ShaPasswordEncoder passwordEncoder;
-
-    @Autowired
-    private RememberMeServices rememberMeServices;
 
     @Override
     @Bean
@@ -92,19 +90,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-//                .and()
-//                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
-//                .and()
-//                .rememberMe()
-//                .rememberMeServices(rememberMeServices)
-//                .rememberMeParameter("remember-me")
-//                .key(applicationProperties.getSecurity().getRememberMe().getKey())
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")
 //                .successHandler(ajaxAuthenticationSuccessHandler)
-//                .failureHandler(ajaxAuthenticationFailureHandler)
+                .failureHandler(ajaxAuthenticationFailureHandler)
                 .usernameParameter("j_username")
                 .passwordParameter("j_password")
                 .permitAll()
@@ -116,7 +107,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .headers()
                 .frameOptions()
-                .disable()
+                .sameOrigin()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/register").permitAll()
@@ -127,6 +118,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/profile-info").permitAll()
                 .antMatchers("/**").authenticated()
                 .antMatchers("/admin/**").hasAuthority(AuthoritiesConstants.ADMIN);
+        http.rememberMe().rememberMeServices(rememberMeServices()).key(applicationProperties.getSecurity().getRememberMe().getKey());
+    }
+
+    @Bean
+    public RememberMeServices rememberMeServices() {
+        TokenBasedRememberMeServices rememberMeServices = new TokenBasedRememberMeServices(applicationProperties.getSecurity().getRememberMe().getKey(), userDetailsService);
+        rememberMeServices.setCookieName("remember-me");
+        rememberMeServices.setParameter("remember-me");
+        return rememberMeServices;
     }
 
     @Bean
