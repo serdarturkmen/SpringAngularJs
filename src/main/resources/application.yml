@@ -1,8 +1,10 @@
 spring:
   application:
     name: techservice
+  thymeleaf:
+    cache: false
   profiles:
-      active: dev
+      active: prod
   datasource:
         url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: techservice
@@ -29,7 +31,7 @@ spring:
       starttls.enable: true
       ssl.trust: smtp.gmail.com
 server:
-    port: 8080
+    port: 8090
 exampleApp:
   security:
     rememberMe:
@@ -40,3 +42,5 @@ exampleApp:
     queueCapacity: 10000
   mail:
     from: denememailsrd@gmail.com
+logging:
+  level: debug

@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/css/app.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
 </head>
 <body>
 <!-- Stack the columns on mobile by making one full-width and the other half-width -->
@@ -40,6 +42,7 @@
 <script src="app/app.config.js"></script>
 <script src="app/app.controller.js"></script>
 <script src="app/roles.controller.js"></script>
+<script src="app/app.modules.js"></script>
 <script src="app/student/student.controller.js"></script>
 <script src="app/student/studentDetail.controller.js"></script>
 <script src="app/navbar/navbar.controller.js"></script>

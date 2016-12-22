@@ -5,6 +5,7 @@ import com.example.thymeleaf.bs.IStudentBS;
 import com.example.thymeleaf.bs.MailService;
 import com.example.thymeleaf.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +35,10 @@ public class StudentResource extends BaseResource<Student>{
 
     @RequestMapping(value = "mail", method = RequestMethod.GET)
     public String dene() throws Exception {
-        mailService.sendEmail("baver_t@hotmail.com","subject", "dsadsas",false,true);
+        if(1==1){
+            throw new DataIntegrityViolationException("Duplicate id");
+        }
+//        mailService.sendEmail("baver_t@hotmail.com","subject", "dsadsas",false,true);
         return "ok";
     }
 

@@ -24,7 +24,6 @@ import org.springframework.security.web.authentication.rememberme.TokenBasedReme
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -40,9 +39,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private SerdarLogoutSuccessHandler ajaxLogoutSuccessHandler;
-
-    @Autowired
-    private Http401UnauthorizedEntryPoint authenticationEntryPoint;
 
     @Autowired
     private UserDetailsService userDetailsService;
