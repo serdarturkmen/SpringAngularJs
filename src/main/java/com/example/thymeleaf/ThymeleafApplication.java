@@ -1,26 +1,30 @@
 package com.example.thymeleaf;
 
-import javax.annotation.PostConstruct;
-
 import com.example.thymeleaf.config.ApplicationProperties;
 import com.example.thymeleaf.model.*;
 import com.example.thymeleaf.repository.mongo.FacultyMRepository;
 import com.example.thymeleaf.repository.mongo.RoleMRepository;
 import com.example.thymeleaf.repository.mongo.StudentMRepository;
 import com.example.thymeleaf.repository.mongo.UserMRepository;
-import org.hibernate.usertype.CompositeUserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Scanner;
+import javax.annotation.PostConstruct;
+import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+
+import static java.nio.file.StandardOpenOption.APPEND;
+import static java.nio.file.StandardOpenOption.CREATE;
 
 @SpringBootApplication
-@EnableConfigurationProperties({ ApplicationProperties.class})
+@EnableConfigurationProperties({ApplicationProperties.class})
 public class ThymeleafApplication {
 
     @Autowired
@@ -40,14 +44,101 @@ public class ThymeleafApplication {
     }
 
     @PostConstruct
-    public void dene() {
+    public void dene() throws IOException{
         initMongo();
-        optionalExamples();
-        int a = 5 % 3;
-        int b = 4 % 2;
+//        optionalExamples();
+//        int a = 5 % 3;
+//        int b = 4 % 2;
         //StairCase(6);
-
+//        linkedListExample();
 //        coprimeSum();
+//        fleIOOperations();
+        createPath();
+    }
+
+
+    private void createPath() {
+        /**
+         * Write string to file relative path
+         */
+
+        Path p = Paths.get("dene.txt");
+        String s = "Hello World! ";
+        byte data[] = s.getBytes();
+        try (OutputStream out = new BufferedOutputStream(
+                Files.newOutputStream(p, CREATE, APPEND))) {
+            out.write(data, 0, data.length);
+        } catch (IOException x) {
+            System.err.println(x);
+        }
+
+        PrintWriter outputStream = null;
+        BufferedReader inputStream  = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/config.txt")));
+
+        String l;
+        try {
+            while ((l = inputStream.readLine()) != null) {
+                System.out.println(l);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Path pathToFile = Paths.get("C:\\users\\bawer\\Desktop\\BaseModel.java");
+        System.out.print(pathToFile);
+        Path path = Paths.get("Directory1");
+        try {
+            Files.createDirectories(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private void fleIOOperations() throws IOException {
+        FileInputStream in = null;
+        FileOutputStream out = null;
+
+        try {
+            in = new FileInputStream("example.txt");
+            out = new FileOutputStream("outagain.txt");
+            int c;
+
+            while ((c = in.read()) != -1) {
+                out.write(c);
+            }
+        } finally {
+            if (in != null) {
+                in.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
+
+    private void linkedListExample() {
+        System.out.println();
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("enter an integer");
+        int x = keyboard.nextInt();
+
+        System.out.println();
+        Scanner key = new Scanner(System.in);
+        System.out.println("enter array with 1 space in each");
+//        String y = key.nextLine();
+//        String[] parts = y.split(" ");
+        LinkedList<Integer> ll = new LinkedList<Integer>();
+        while (key.hasNext())
+            ll.push(key.nextInt());
+
+        int index = ll.size() - x;
+        System.out.println("dsad");
+        try {
+            System.out.println(ll.get(index));
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("NIL");
+        }
+
     }
 
     private void initMongo() {
@@ -112,7 +203,7 @@ public class ThymeleafApplication {
 
         facultyMRepository.save(fac);
         studentMRepository.save(students);
-        List<Faculty> facs =  facultyMRepository.findAll();
+        List<Faculty> facs = facultyMRepository.findAll();
 //        Student std = studentMRepository.findByFirstName("serdar");
         System.out.print(facs);
     }
@@ -122,7 +213,7 @@ public class ThymeleafApplication {
         Integer numara = 3;
         Optional<Integer> opt = Optional.ofNullable(numara);
         opt
-                .map(num->Math.pow(num,2))
+                .map(num -> Math.pow(num, 2))
                 .ifPresent(System.out::println);
         String message = "deneme";
         Optional<String> opt2 = Optional.ofNullable(message);
@@ -137,11 +228,11 @@ public class ThymeleafApplication {
         int myint = keyboard.nextInt();
         List<Integer> firstList = new ArrayList<>();
         List<Integer> secondList = new ArrayList<>();
-        for(int i=0; i<myint; i++){
+        for (int i = 0; i < myint; i++) {
             int newInt = keyboard.nextInt();
             firstList.add(newInt);
         }
-        for(int i=0; i<myint; i++){
+        for (int i = 0; i < myint; i++) {
             int newInt = keyboard.nextInt();
             secondList.add(newInt);
         }
