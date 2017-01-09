@@ -1,7 +1,7 @@
 package com.example.thymeleaf;
 
 import com.example.thymeleaf.config.ApplicationProperties;
-import com.example.thymeleaf.model.*;
+import com.example.thymeleaf.model.mon.*;
 import com.example.thymeleaf.repository.mongo.FacultyMRepository;
 import com.example.thymeleaf.repository.mongo.RoleMRepository;
 import com.example.thymeleaf.repository.mongo.StudentMRepository;
@@ -10,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 import javax.annotation.PostConstruct;
 import java.io.*;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -25,6 +24,7 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ApplicationProperties.class})
+@EnableElasticsearchRepositories("com.example.thymeleaf.repository.search")
 public class ThymeleafApplication {
 
     @Autowired
@@ -38,6 +38,7 @@ public class ThymeleafApplication {
 
     @Autowired
     private RoleMRepository roleMRepository;
+
 
     public static void main(String[] args) {
         SpringApplication.run(ThymeleafApplication.class, args);

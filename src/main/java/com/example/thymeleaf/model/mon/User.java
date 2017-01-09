@@ -1,9 +1,8 @@
-package com.example.thymeleaf.model;
+package com.example.thymeleaf.model.mon;
 
 import java.util.*;
-import javax.persistence.Column;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -11,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.stereotype.Service;
 
 public class User extends BaseMonModel implements UserDetails {
 

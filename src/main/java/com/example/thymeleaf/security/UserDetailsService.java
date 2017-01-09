@@ -1,7 +1,7 @@
 package com.example.thymeleaf.security;
 
 import com.example.thymeleaf.repository.mongo.UserMRepository;
-import com.example.thymeleaf.model.User;
+import com.example.thymeleaf.model.mon.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import java.util.*;
 
 /**
  * Authenticate a user from the database.
+ * @author Serdar Turkmen
  */
 @Component("userDetailsService")
 public class UserDetailsService implements org.springframework.security.core.userdetails.UserDetailsService {

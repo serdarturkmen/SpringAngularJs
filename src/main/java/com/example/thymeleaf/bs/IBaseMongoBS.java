@@ -1,6 +1,6 @@
 package com.example.thymeleaf.bs;
 
-import com.example.thymeleaf.model.BaseMonModel;
+import com.example.thymeleaf.model.mon.BaseMonModel;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.example.thymeleaf.security;
 
 import com.example.thymeleaf.bs.IUserBS;
-import com.example.thymeleaf.model.User;
+import com.example.thymeleaf.model.mon.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,7 @@ import java.util.Date;
 
 /**
  * Spring Security success handler, specialized for Ajax requests.
+ * @author Serdar Turkmen
  */
 @Component
 public class SerdarAuthenticationSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {

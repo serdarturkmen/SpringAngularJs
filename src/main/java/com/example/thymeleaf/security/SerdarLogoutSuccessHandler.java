@@ -1,6 +1,6 @@
 package com.example.thymeleaf.security;
 
-import com.example.thymeleaf.model.User;
+import com.example.thymeleaf.model.mon.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
@@ -13,6 +13,7 @@ import java.io.IOException;
 
 /**
  * Spring Security logout handler, specialized for Ajax requests.
+ * @author Serdar Turkmen
  */
 @Component
 public class SerdarLogoutSuccessHandler implements LogoutSuccessHandler {

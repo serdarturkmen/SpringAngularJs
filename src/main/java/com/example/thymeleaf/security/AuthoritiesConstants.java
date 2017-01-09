@@ -2,6 +2,8 @@ package com.example.thymeleaf.security;
 
 /**
  * Constants for Spring Security authorities.
+ *
+ * @author Serdar Turkmen
  */
 public final class AuthoritiesConstants {
 

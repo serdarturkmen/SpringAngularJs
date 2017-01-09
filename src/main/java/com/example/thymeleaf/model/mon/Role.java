@@ -1,4 +1,4 @@
-package com.example.thymeleaf.model;
+package com.example.thymeleaf.model.mon;
 
 import org.springframework.security.core.GrantedAuthority;
 import com.fasterxml.jackson.annotation.JsonIgnore;

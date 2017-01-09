@@ -1,7 +1,7 @@
 package com.example.thymeleaf.web.rest;
 
 import com.example.thymeleaf.bs.IBaseMongoBS;
-import com.example.thymeleaf.model.BaseMonModel;
+import com.example.thymeleaf.model.mon.BaseMonModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

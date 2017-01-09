@@ -1,14 +1,14 @@
-package com.example.thymeleaf.model;
+package com.example.thymeleaf.model.mon;
 
 import lombok.Data;
-
-import java.util.List;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by bawer on 12.12.2016.
  */
 
 @Data
+@Document
 public class Student extends BaseMonModel {
 
     public Student() {
@@ -27,6 +27,6 @@ public class Student extends BaseMonModel {
 
     private String facultyId;
 
-    private List<Course> courses;
+//    private List<Course> courses;
 
 }

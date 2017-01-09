@@ -1,4 +1,4 @@
-package com.example.thymeleaf.model;
+package com.example.thymeleaf.model.mon;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;

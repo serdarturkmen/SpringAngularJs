@@ -1,6 +1,6 @@
 package com.example.thymeleaf.repository.mongo;
 
-import com.example.thymeleaf.model.Student;
+import com.example.thymeleaf.model.mon.Student;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 

@@ -1,4 +1,4 @@
-package com.example.thymeleaf.model;
+package com.example.thymeleaf.model.mon;
 
 /**
  * Created by bawer on 14.12.2016.

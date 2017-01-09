@@ -1,8 +1,8 @@
 package com.example.thymeleaf.web.rest;
 
 import com.example.thymeleaf.bs.FacultyBS;
-import com.example.thymeleaf.model.Department;
-import com.example.thymeleaf.model.Faculty;
+import com.example.thymeleaf.model.mon.Department;
+import com.example.thymeleaf.model.mon.Faculty;
 import com.example.thymeleaf.repository.mongo.FacultyMRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,8 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.rmi.CORBA.Util;
-import java.util.List;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

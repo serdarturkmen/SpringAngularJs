@@ -1,8 +1,8 @@
 package com.example.thymeleaf.bs;
 
 import static org.junit.Assert.assertEquals;
-import com.example.thymeleaf.model.Department;
-import com.example.thymeleaf.model.Faculty;
+import com.example.thymeleaf.model.mon.Department;
+import com.example.thymeleaf.model.mon.Faculty;
 import com.example.thymeleaf.repository.mongo.FacultyMRepository;
 import org.junit.Before;
 import org.junit.Test;

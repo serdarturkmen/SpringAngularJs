@@ -1,4 +1,4 @@
-package com.example.thymeleaf.model;
+package com.example.thymeleaf.model.mon;
 
 import lombok.Data;
 import java.util.HashSet;

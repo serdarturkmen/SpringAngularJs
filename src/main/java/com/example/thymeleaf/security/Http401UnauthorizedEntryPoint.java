@@ -13,6 +13,7 @@ import java.io.IOException;
 
 /**
  * Returns a 401 error code (Unauthorized) to the client.
+ * @author Serdar Turkmen
  */
 @Component
 public class Http401UnauthorizedEntryPoint implements AuthenticationEntryPoint {
